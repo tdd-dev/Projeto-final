@@ -9,44 +9,37 @@ class ComponentesEletromecanicos(ABC):
         self.funcao = funcao
         self.estado = estado
 
-    @abstractmethod
     def get_grandeza(self):
         pass
 
-    @abstractmethod
     def set_grandeza(self, grandeza):
         pass
 
-    @abstractmethod
     def get_funcao(self):
         pass
 
-    @abstractmethod
     def set_funcao(self, funcao):
         pass
 
-    @abstractmethod
     def get_estado(self):
         pass
 
-    @abstractmethod
     def set_estado(self, estado):
         pass
 
-    @abstractmethod
     def ligar(self):
         pass
 
-    @abstractmethod
     def desligar(self):
         pass
 
 class Sensores(ComponentesEletromecanicos):
-    
+
     def __init__(self, valorLido, valorMaximo):
-        super().__init__()
+        #super().__init__()
         self.valorLido = valorLido
         self.valorMaximo = valorMaximo
+        self.funcao = 'medir'
 
     def set_valorLido(self):
         pass
@@ -61,11 +54,12 @@ class Sensores(ComponentesEletromecanicos):
         pass
 
     def set_funcao(self,funcao):
-        self.funcao = 'medir'
+        self.funcao = funcao
 
     def get_funcao(self):
         return self.funcao
 
 class Atuadores(ComponentesEletromecanicos):
-    
+
+
     pass
