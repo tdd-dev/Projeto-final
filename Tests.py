@@ -14,4 +14,8 @@ class Test(object):
         #print(teste_Sensor.get_funcao())
         assert teste_Sensor.get_funcao() == 'medir'
 
-    #def test_valor_lido(self):
+    def test_estado(self):
+        sensor = Sensores()
+        sensor.ligar()
+        assert sensor.get_estado() == 'sensor ligado'
+
