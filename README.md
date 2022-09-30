@@ -16,34 +16,70 @@
         -> implementa um metodo abstrado (get/set)Função()
         -> implementa um metodo abstrado (get/set)Estado()
 
+        -> métodos ligar(), desligar()
+
         Classe Sensores:
             1- valorLido
             2- valorMaximo
 
             -> implementar (get/set)ValorLido()
             -> implementar (get/set)valorMaximo()
+            
+            -> set/getFuncao: "medir"
 
+
+            -> metodo ligar() e desligar(): "Sensor ligado"/"Sensor desligado"
             -> metodo medir(getValorLido)
             -> metodo maximo(getValorMaximo)
 
             Classe Temperatura:
 
-                -> getGrandeza
-                -> Implementar um metodo "PadronizarValorLidoTemp(getValorLido)" usando atributo "Grandeza"
+                (????)-> Implementar um metodo "PadronizarValorLidoTemp(getValorLido)" usando atributo "Grandeza"
+                
+                -> set/getGrandeza: (ºC,K,ºF)
+                -> set/getFuncao: "medir temperatura"
 
+                -> metodo ligar e desligar(): "Sensor de temperatura ligado"/"Sensor de temperatura desligado"
+                -> metodo medir(getValorLido + getGrandeza)
+                -> metodo maximo(getValorMaximo + getValorMaximo)
 
             Classe Pressão:
+
+              (????)-> Implementar um metodo "PadronizarValorLidoTemp(getValorLido)" usando atributo "Grandeza"
                 
+                -> set/getGrandeza: (atm,mmHg,Pa)
+                -> set/getFuncao: "medir pressão"
+
+                -> metodo ligar() e desligar(): "Sensor de pressão ligado"/"Sensor de pressão desligado"
+                -> metodo medir(getValorLido + getGrandeza)
+                -> metodo maximo(getValorMaximo + getGrandeza)
             
         Classe Atuadores:
             1- posicao
-            2- fluido
+            2- atuador
+    
+            -> implementar (get/set)posicao(): "inicio do atuador"/"fim do atuado"
+            -> implementar (get/set)atuador(): "fluido"
+            
+            -> set/getFuncao: "agir"
+
+            -> metodo ligar() e desligar(): "Atuador ligado"/"Atuador desligado"
+            -> metodo avancar() e recuar(): "fim do atuador"/"inicio do atuador"
 
             Classe Pneumatico:
 
-            Classe Hidraulico:
-    
+                -> set/getGrandeza: (atm,mmHg,Pa)
+                -> set/getFuncao: "agir sob pressão do ar"
+                
+                -> metodo ligar() e desligar(): "Pistão pneumático ligado"/"Pistão pneumático desligado"
+                -> metodo avancar() e recuar(): "fim do pistão pneumático"/"inicio do pistão pneumático"
 
+            Classe Hidraulico:
+                -> set/getGrandeza: (atm,mmHg,Pa)
+                -> set/getFuncao: "agir sob pressão de óleo hidráulico"
+                
+                -> metodo ligar() e desligar(): "Prensa hidráulica ligada"/"Prensa hidráulica desligada"
+                -> metodo avancar() e recuar(): "fim da prensa hidráulica"/"inicio da prensa hidráulica"
 
 # metodos para as classes
 
