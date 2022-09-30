@@ -1,11 +1,9 @@
 from abc import ABC, abstractmethod
+import Sensores
+import Atuadores
 
 class ComponentesEletromecanicos(ABC):
-    grandeza: str
-    funcao: str
-    estado: str
-
-    @abstractmethod
+    
     def __init__(self, grandeza, funcao, estado):
         self.grandeza = grandeza
         self.funcao = funcao
@@ -42,3 +40,32 @@ class ComponentesEletromecanicos(ABC):
     @abstractmethod
     def desligar(self):
         pass
+
+class Sensores(ComponentesEletromecanicos):
+    
+    def __init__(self, valorLido, valorMaximo):
+        super().__init__()
+        self.valorLido = valorLido
+        self.valorMaximo = valorMaximo
+
+    def set_valorLido(self):
+        pass
+
+    def get_valorLido(self,valorLido):
+        pass
+
+    def set_valorMaximo(self):
+        pass
+
+    def get_valorMaximo(self,valorMaximo):
+        pass
+
+    def set_funcao(self,funcao):
+        self.funcao = 'medir'
+
+    def get_funcao(self):
+        return self.funcao
+
+class Atuadores(ComponentesEletromecanicos):
+    
+    pass

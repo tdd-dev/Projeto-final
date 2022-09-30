@@ -1,2 +1,5 @@
-class Atuadores:
+class Pneumatico:
+    pass
+
+class Hidraulico:
     pass

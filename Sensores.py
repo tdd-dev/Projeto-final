@@ -1,2 +1,5 @@
-class Sensores:
+class Temperatura:
+    pass
+
+class Pressao:
     pass

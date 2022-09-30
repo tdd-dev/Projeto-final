@@ -45,7 +45,7 @@
 
             Classe Pressão:
 
-              (????)-> Implementar um metodo "PadronizarValorLidoTemp(getValorLido)" usando atributo "Grandeza"
+              (????)-> Implementar um metodo "PadronizarValorLidoPressao(getValorLido)" usando atributo "Grandeza"
                 
                 -> set/getGrandeza: (atm,mmHg,Pa)
                 -> set/getFuncao: "medir pressão"
