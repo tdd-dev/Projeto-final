@@ -34,13 +34,15 @@ class ComponentesEletromecanicos(ABC):
         pass
 
 class Sensores(ComponentesEletromecanicos):
-
-    def __init__(self, valorLido, valorMaximo):
-        #super().__init__()
-        self.valorLido = valorLido
-        self.valorMaximo = valorMaximo
-        self.funcao = 'medir'
-
+    
+    def __init__(self,valorLido,valorMaximo):
+        super().__init__('','medir','Sensor deligado')
+        self.valorLido= valorLido
+        self.valorMaximo= valorMaximo
+    
+    def __init__(self):
+        super().__init__('','medir','Sensor deligado')
+        
     def set_valorLido(self):
         pass
 

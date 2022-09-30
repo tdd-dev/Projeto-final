@@ -1,15 +1,17 @@
-#import ComponentesEletromecanicos
-from ComponentesEletromecanicos import Sensores, ComponentesEletromecanicos
 
-# import ComponentesEletromecanicos as rootClass
-# class Test(object):
-#
-#     def test(self):
-#
-#         assert rootClass.get_funcao() == 'medir'
-a = Sensores(10.0, 10.0)
-#b = ComponentesEletromecanicos("df", "gh", "Gh")
+from ComponentesEletromecanicos import ComponentesEletromecanicos, Sensores, Atuadores
 
-a.set_funcao('atuar')
-print(a.get_funcao())
-#print(b.get_grandeza())
+class Test(object):
+
+    # def test_classe_abstrata(self):
+    #     ComponentesEletromecanicos.set_funcao('agir')
+    #     #print(teste_Sensor.get_funcao())
+    #     assert ComponentesEletromecanicos.get_funcao() == 'agir'
+
+    def test_funcao_sensor(self):
+        teste_Sensor = Sensores()
+        teste_Sensor.set_funcao('medir')
+        #print(teste_Sensor.get_funcao())
+        assert teste_Sensor.get_funcao() == 'medir'
+
+    #def test_valor_lido(self):
