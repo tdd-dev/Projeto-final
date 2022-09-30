@@ -17,5 +17,5 @@ class Test(object):
     def test_estado(self):
         sensor = Sensores()
         sensor.ligar()
-        assert sensor.get_estado() == 'sensor ligado'
+        assert sensor.get_estado() == 'sensor Ligado'
 
