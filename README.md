@@ -64,7 +64,7 @@
             -> set/getFuncao: "agir"
 
             -> metodo ligar() e desligar(): "Atuador ligado"/"Atuador desligado"
-            -> metodo avancar() e recuar(): "fim do atuador"/"inicio do atuador"
+            -> metodo avancar() e recuar(): "Fim do atuador"/"Início do atuador"
 
             Classe Pneumatico:
 

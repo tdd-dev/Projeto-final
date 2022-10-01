@@ -42,26 +42,53 @@ class Sensores(ComponentesEletromecanicos):
     
     def __init__(self):
         super().__init__('','medir','Sensor deligado')
-        
-    def set_valorLido(self):
-        pass
+    def set_valorLido(self, valorLido):
+        self.valorLido = valorLido
+    def get_valorLido(self):
+        return self.valorLido
 
-    def get_valorLido(self,valorLido):
-        pass
-
-    def set_valorMaximo(self):
-        pass
-
-    def get_valorMaximo(self,valorMaximo):
-        pass
+    def set_valorMaximo(self, valorMaximo):
+        self.valorMaximo = valorMaximo
+    def get_valorMaximo(self):
+        return self.valorMaximo
 
     def set_funcao(self,funcao):
         self.funcao = funcao
-
     def get_funcao(self):
         return self.funcao
 
 class Atuadores(ComponentesEletromecanicos):
+    def __init__(self, posicao, atuador):
+        super().__init__('', 'atuar', 'Atuador deligado')
+        self.posicao = posicao
+        self.atuador = atuador
 
+    def __init__(self):
+        super().__init__('', 'atuar', 'Atuador deligado')
 
-    pass
+    def get_posicao(self):
+        return self.posicao
+
+    def set_posicao(self, posicao):
+        self.posicao = posicao
+
+    def get_atuador(self):
+        return self.atuador
+
+    def set_atuador(self, atuador):
+        self.atuador = atuador
+
+    def set_estado(self, estado):
+        self.estado = estado
+
+    def ligar(self):
+        self.set_estado('Atuador ligado')
+
+    def desligar(self):
+        self.set_estado('Atuador desligado')
+
+    def avancar(self):
+        self.set_posicao('Fim do atuador')
+
+    def recuar(self):
+        self.set_estado('Inicio do Atuador')

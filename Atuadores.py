@@ -1,5 +1,5 @@
-class Pneumatico:
+class AtuadorPneumatico():
     pass
 
-class Hidraulico:
+class AtuadorHidraulico:
     pass
