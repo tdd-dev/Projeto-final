@@ -36,12 +36,13 @@ class ComponentesEletromecanicos(ABC):
 class Sensores(ComponentesEletromecanicos):
     
     def __init__(self,valorLido,valorMaximo):
-        super().__init__('','medir','Sensor deligado')
+        super().__init__('','medir','Sensor desligado')
         self.valorLido= valorLido
         self.valorMaximo= valorMaximo
     
     def __init__(self):
-        super().__init__('','medir','Sensor deligado')
+        super().__init__('','medir','Sensor desligado')
+        
     def set_valorLido(self, valorLido):
         self.valorLido = valorLido
     def get_valorLido(self):
@@ -56,6 +57,15 @@ class Sensores(ComponentesEletromecanicos):
         self.funcao = funcao
     def get_funcao(self):
         return self.funcao
+
+    def set_estado(self,estado):
+        self.estado = estado
+    def ligar(self):
+        self.set_estado('Sensor ligado')
+    def desligar(self):
+        self.set_estado('Sensor desligado')
+    def get_estado(self):
+        return self.estado
 
 class Atuadores(ComponentesEletromecanicos):
     def __init__(self, posicao, atuador):
