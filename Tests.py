@@ -1,6 +1,7 @@
 import pytest
-from ComponentesEletromecanicos import Sensores, Atuadores
+from ComponentesEletromecanicos import ComponentesEletromecanicos, Sensores, Atuadores
 from Sensores import SensorTemperatura, SensorPressao
+
 
 class Test(object):
 
@@ -47,13 +48,31 @@ class Test(object):
         sensor_temp = SensorTemperatura()
         sensor_temp.set_valorLido('32')
         sensor_temp.set_grandeza('C')
-        assert sensor_temp.medir() == '32 C'
+        assert sensor_temp.medir() == '32C'
 
     def test_grandeza_sensor_pressao(self):
         sensor_pres = SensorPressao()
         sensor_pres.set_valorLido('5')
         sensor_pres.set_grandeza('Pa')
-        assert sensor_pres.medir() == '5 Pa'
+        assert sensor_pres.medir() == '5Pa'
+    
+    def test_valor_sensor_temperatura_maior_range(self):
+        sensor_temp = SensorTemperatura()
+        sensor_temp.set_valorLido('150')
+        sensor_temp.set_grandeza('C')
+        assert sensor_temp.medir() == 'ERRO TEMPERATURA MAIOR QUE RANGE'
+
+    def test_valor_sensor_temperatura_com_espaco(self):
+        sensor_temp = SensorTemperatura()
+        sensor_temp.set_valorLido('1 0')
+        sensor_temp.set_grandeza('C')
+        assert sensor_temp.medir() == 'ERRO TEMPERATURA DEVE SER NUMÉRICA'
+    
+    def test_grandeza_sensor_temperatura_incorreta(self):
+        sensor_temp = SensorTemperatura()
+        sensor_temp.set_valorLido('10')
+        sensor_temp.set_grandeza('K')
+        assert sensor_temp.medir() == 'GRANDEZA DEVE SER EM CELSIUS'
     
     def test_set_funcao_atuador(self):
         atuador = Atuadores()

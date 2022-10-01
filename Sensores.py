@@ -1,8 +1,15 @@
 from ComponentesEletromecanicos import Sensores
 
 class SensorTemperatura(Sensores):
+
+    def __init__(self,valorLido,valorMaximo):
+        super().__init__('','')
+        self.valorLido= valorLido
+        self.valorMaximo= valorMaximo
+
     def __init__(self):
         super().__init__()
+
 
     def set_grandeza(self, grandeza):
         self.grandeza = grandeza
@@ -13,6 +20,11 @@ class SensorTemperatura(Sensores):
         self.valorLido = valorLido
     def get_valorLido(self):
         return self.valorLido
+
+    def set_valorMaximo(self,valorMaximo):
+        self.valorMaximo = valorMaximo
+    def get_valorMaximo(self):
+        return self.valorMaximo
 
     def set_estado(self,estado):
         self.estado = estado
@@ -27,14 +39,16 @@ class SensorTemperatura(Sensores):
     def medir(self):
         if(self.get_valorLido().isdigit() != True):
             print('Valor invalido')
+            return 'ERRO TEMPERATURA DEVE SER NUMÉRICA'
         elif(int(self.get_valorLido()) < 0):
             print('Valor invalido')
+            return 'ERRO TEMPERATURA MENOR QUE RANGE'
         elif(int(self.get_valorLido()) > 100):
             print('Valor invalido')
-        elif(' ' in self.get_valorLido()):
-            print('Valor invalido')
+            return 'ERRO TEMPERATURA MAIOR QUE RANGE'
         elif(self.get_grandeza() != 'C'):
             print('Valor invalido')
+            return 'GRANDEZA DEVE SER EM CELSIUS'
         else:
             return self.get_valorLido() + self.get_grandeza()
         
