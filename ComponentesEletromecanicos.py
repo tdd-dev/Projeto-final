@@ -71,25 +71,24 @@ class Atuadores(ComponentesEletromecanicos):
         super().__init__('', 'atuar', 'Atuador deligado')
         self.posicao = posicao
         self.atuador = atuador
-
     def __init__(self):
         super().__init__('', 'atuar', 'Atuador deligado')
-
     def get_posicao(self):
         return self.posicao
-
     def set_posicao(self, posicao):
         self.posicao = posicao
-
     def get_atuador(self):
         return self.atuador
-
     def set_atuador(self, atuador):
         self.atuador = atuador
-
     def set_estado(self, estado):
         self.estado = estado
-
+    def get_estado(self):
+        return self.estado
+    def set_funcao(self, funcao):
+        self.funcao = funcao
+    def get_funcao(self):
+        return self.funcao
     def ligar(self):
         self.set_estado('Atuador ligado')
 
@@ -97,7 +96,7 @@ class Atuadores(ComponentesEletromecanicos):
         self.set_estado('Atuador desligado')
 
     def avancar(self):
-        self.set_posicao('Fim do atuador')
+        self.set_posicao('Fim do Atuador')
 
     def recuar(self):
         self.set_estado('Inicio do Atuador')
