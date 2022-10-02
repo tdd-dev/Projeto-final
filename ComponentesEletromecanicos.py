@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class ComponentesEletromecanicos(ABC):
     
     def __init__(self, grandeza, funcao, estado):
@@ -33,14 +32,13 @@ class ComponentesEletromecanicos(ABC):
         pass
 
 class Sensores(ComponentesEletromecanicos):
-    
-    def __init__(self,valorLido,valorMaximo):
+
+    def __init__(self, *args):
         super().__init__('','medir','Sensor desligado')
-        self.valorLido= valorLido
-        self.valorMaximo= valorMaximo
-    
-    def __init__(self):
-        super().__init__('','medir','Sensor desligado')
+        if len(args) == 2:
+            self.valorLido = args[0]
+            self.valorMaximo = args[1]
+        
         
     def set_valorLido(self, valorLido):
         self.valorLido = valorLido

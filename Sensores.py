@@ -2,10 +2,6 @@ from ComponentesEletromecanicos import Sensores
 
 class SensorTemperatura(Sensores):
 
-    def __init__(self,valorLido,valorMaximo):
-        super().__init__('','')
-        self.valorLido= valorLido
-        self.valorMaximo= valorMaximo
 
     def __init__(self):
         super().__init__()
@@ -77,13 +73,17 @@ class SensorPressao(Sensores):
     def medir(self):
         if(self.get_valorLido().isdigit() != True):
             print('Valor invalido')
+            return 'ERRO PRESSAO DEVE SER NUMÉRICA'
         elif(int(self.get_valorLido()) < 0):
             print('Valor invalido')
+            return 'ERRO PRESSAO MENOR QUE RANGE'
         elif(int(self.get_valorLido()) > 100):
             print('Valor invalido')
-        elif(' ' in self.get_valorLido()):
-            print('Valor invalido')
+            return 'ERRO PRESSÃO MAIOR QUE RANGE'
+        # elif(' ' in self.get_valorLido()):
+        #     print('Valor invalido')
         elif(self.get_grandeza() != 'Pa'):
             print('Valor invalido')
+            return 'GRANDEZA DEVE SER EM Pa'
         else:
             return self.get_valorLido() + self.get_grandeza()
