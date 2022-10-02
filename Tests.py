@@ -1,4 +1,5 @@
 import pytest
+from Atuadores import AtuadorHidraulico, AtuadorPneumatico
 from ComponentesEletromecanicos import ComponentesEletromecanicos, Sensores, Atuadores
 from Sensores import SensorTemperatura, SensorPressao
 
@@ -10,10 +11,14 @@ class Test(object):
         teste_Sensor.set_funcao('medir')
         assert teste_Sensor.get_funcao() == 'medir'
 
-    def test_estado_inicial_construtor(self):
+    def test_estado_inicial_construtor_sensor(self):
         sensor = Sensores()
         assert sensor.get_estado() == 'Sensor desligado'
-
+    
+    def test_construtor_sensores_com_param(self):
+        sensor = Sensores(10, 15)
+        assert sensor.get_valorLido() == 10 and sensor.get_valorMaximo() == 15
+    
     def test_ligar_sensor(self):
         sensor = Sensores()
         sensor.ligar()
@@ -23,7 +28,9 @@ class Test(object):
         sensor = Sensores()
         sensor.desligar()
         assert sensor.get_estado() == 'Sensor desligado'
-    
+
+    #--------------------------------------- TESTES SENSOR TEMPERATURA ------------------------------------------------------------------------
+        
     def test_estado_sensor_temperatura_ligado(self):
         sensor_temp = SensorTemperatura()
         sensor_temp.ligar()
@@ -33,16 +40,6 @@ class Test(object):
         sensor_temp = SensorTemperatura()
         sensor_temp.desligar()
         assert sensor_temp.get_estado() == 'Sensor de temperatura desligado'
-
-    def test_estado_sensor_pressao_ligado(self):
-        sensor_pres = SensorPressao()
-        sensor_pres.ligar()
-        assert sensor_pres.get_estado() == 'Sensor de pressão ligado'
-
-    def test_estado_sensor_pressao_desligado(self):
-        sensor_pres = SensorPressao()
-        sensor_pres.desligar()
-        assert sensor_pres.get_estado() == 'Sensor de pressão desligado'
     
     def test_grandeza_sensor_temp(self):
         sensor_temp = SensorTemperatura()
@@ -50,12 +47,6 @@ class Test(object):
         sensor_temp.set_grandeza('C')
         assert sensor_temp.medir() == '32C'
 
-    def test_grandeza_sensor_pressao(self):
-        sensor_pres = SensorPressao()
-        sensor_pres.set_valorLido('5')
-        sensor_pres.set_grandeza('Pa')
-        assert sensor_pres.medir() == '5Pa'
-    
     def test_valor_sensor_temperatura_maior_range(self):
         sensor_temp = SensorTemperatura()
         sensor_temp.set_valorLido('150')
@@ -73,22 +64,116 @@ class Test(object):
         sensor_temp.set_valorLido('10')
         sensor_temp.set_grandeza('K')
         assert sensor_temp.medir() == 'GRANDEZA DEVE SER EM CELSIUS'
+
+    #--------------------------------------- TESTES SENSOR PRESSÃO ------------------------------------------------------------------------ 
     
+    def test_estado_sensor_pressao_ligado(self):
+        sensor_pres = SensorPressao()
+        sensor_pres.ligar()
+        assert sensor_pres.get_estado() == 'Sensor de pressão ligado'
+
+    def test_estado_sensor_pressao_desligado(self):
+        sensor_pres = SensorPressao()
+        sensor_pres.desligar()
+        assert sensor_pres.get_estado() == 'Sensor de pressão desligado'
+    
+    def test_grandeza_sensor_pressao(self):
+        sensor_pres = SensorPressao()
+        sensor_pres.set_valorLido('5')
+        sensor_pres.set_grandeza('Pa')
+        assert sensor_pres.medir() == '5Pa'
+
+    def test_valor_sensor_pressao_maior_range(self):
+        sensor_pressao = SensorPressao()
+        sensor_pressao.set_valorLido('150')
+        sensor_pressao.set_grandeza('Pa')
+        assert sensor_pressao.medir() == 'ERRO PRESSÃO MAIOR QUE RANGE'
+    
+    def test_valor_sensor_pressao_com_espaco(self):
+        sensor_pressao = SensorPressao()
+        sensor_pressao.set_valorLido('1 0')
+        sensor_pressao.set_grandeza('Pa')
+        assert sensor_pressao.medir() == 'ERRO PRESSAO DEVE SER NUMÉRICA'
+    
+    def test_grandeza_sensor_pressao_incorreta(self):
+        sensor_pressao = SensorPressao()
+        sensor_pressao.set_valorLido('10')
+        sensor_pressao.set_grandeza('Hz')
+        assert sensor_pressao.medir() == 'GRANDEZA DEVE SER EM Pa'
+    
+
+#------------------------------------------------TESTS ATUADORES -----------------------------------------------------------------------
     def test_set_funcao_atuador(self):
         atuador = Atuadores()
         atuador.set_funcao('atuar')
         assert atuador.get_funcao() == 'atuar'
     
-    def test_estado_atuador(self):
+    def test_estado_inicial_construtor_atuador(self):
+        atuador = Atuadores()
+        assert atuador.get_estado() == 'Atuador desligado'
+
+    def test_construtor_atuadores_com_param(self):
+        atuador = Atuadores(10, 15)
+        assert atuador.get_valorLido() == 10 and atuador.get_valorMaximo() == 15
+    
+    def test_ligar_atuador(self):
         atuador = Atuadores()
         atuador.ligar()
         assert atuador.get_estado() == 'Atuador ligado'
 
-    def test_construtor_sensor_temperatura():
-        sensor_temp = SensorTemperatura(10,10)
-        assert sensor_temp.get_valorLido() == 10
-        assert sensor_temp.get_valorMaximo() == 10
-        
+    def test_deligar_atuador(self):
+        atuador = Atuadores()
+        atuador.desligar()
+        assert atuador.get_estado() == 'Atuador desligado'
+ 
+#------------------------------------------------TESTS ATUADOR PNEUMATICO -----------------------------------------------------------------------
+    def test_estado_atuador_pneumatico_ligado(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.ligar()
+        assert atuador_pneu.get_estado() == 'Pistão pneumatico ligado'
+
+    def test_estado_atuador_pneumatico_desligado(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.desligar()
+        assert atuador_pneu.get_estado() == 'Pistão pneumatico desligado'
+
+    def test_posicao_atuador_pneumatico_avancar(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.avancar()
+        assert atuador_pneu.get_posicao() == 'Fim do pistão pneumático'
+    
+    def test_posicao_atuador_pneumatico_recuar(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.recuar()
+        assert atuador_pneu.get_posicao() == 'Início do pistão pneumático'
+
+    
+    # def test_grandeza_atuador_pneumatico(self):
+    #     atuador_pneu = AtuadorPneumatico()
+    #     atuador_pneu.set_valorLido('50')
+    #     atuador_pneu.set_grandeza('Pa')
+    #     assert atuador_pneu.medir() == '50Pa'
 
 
+# ---------------------------- TESTS ATUADOR HIDRAULICO ----------------------------
+
+    def test_estado_atuador_hidraulico_ligado(self):
+        atuador_hidra = AtuadorHidraulico()
+        atuador_hidra.ligar()
+        assert atuador_hidra.get_estado() == 'Prensa hidráulica ligada'
+
+    def test_estado_atuador_hidraulico_desligado(self):
+        atuador_hidra = AtuadorHidraulico()
+        atuador_hidra.desligar()
+        assert atuador_hidra.get_estado() == 'Prensa hidráulica desligada'
+
+    def test_posicao_atuador_pneumatico_avancar(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.avancar()
+        assert atuador_pneu.get_posicao() == 'Fim do pistão pneumático'
+    
+    def test_posicao_atuador_pneumatico_recuar(self):
+        atuador_pneu = AtuadorPneumatico()
+        atuador_pneu.recuar()
+        assert atuador_pneu.get_posicao() == 'Início do pistão pneumático'
 
