@@ -133,9 +133,17 @@ Inserir print do codigo que exemplifique conceito de encapsulamento
 
 # Relatório de cobertura de código
 
-    - Inserir resultados de 50% coberto
-    - Inserir resultados de 80% coberto
-    - Inserir resultados de 100% coberto
+    - Resultado de 54% coberto
+![50%](./coverage_50.jpeg)
+Implementação feita até metade da segunda hierarquia
+    
+    - Resultado de 77% coberto
+![80%](./coverage_80.jpeg)
+Implementação feita até o segundo nível de hierarquia 
+
+    - Resultado de 97% coberto
+![100%](./coverage_100.jpeg)
+Implementação completa
 
 # Conclusoes
 
