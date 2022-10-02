@@ -19,6 +19,11 @@ class Test(object):
         sensor = Sensores(10, 15)
         assert sensor.get_valorLido() == 10 and sensor.get_valorMaximo() == 15
     
+    def test_sensor_set_valor_maximo(self):
+        sensor = Sensores()
+        sensor.set_valorMaximo(20)
+        assert sensor.get_valorMaximo() == 20
+    
     def test_ligar_sensor(self):
         sensor = Sensores()
         sensor.ligar()
@@ -113,9 +118,24 @@ class Test(object):
         assert atuador.get_estado() == 'Atuador desligado'
 
     def test_construtor_atuadores_com_param(self):
-        atuador = Atuadores(10, 15)
-        assert atuador.get_valorLido() == 10 and atuador.get_valorMaximo() == 15
+        atuador = Atuadores('Início do atuador', 'Ar')
+        assert atuador.get_posicao() == 'Início do atuador' and atuador.get_atuador() == 'Ar'
     
+    def test_set_atuador(self):
+        atuador = Atuadores()
+        atuador.set_atuador('Ar')
+        assert atuador.get_atuador() == 'Ar'
+
+    def test_set_posicao_avancar(self):
+        atuador = Atuadores()
+        atuador.avancar()
+        assert atuador.get_posicao() == 'Fim do Atuador'
+    
+    def test_set_posicao_recuar(self):
+        atuador = Atuadores()
+        atuador.recuar()
+        assert atuador.get_posicao() == 'Início do Atuador'
+
     def test_ligar_atuador(self):
         atuador = Atuadores()
         atuador.ligar()
@@ -130,12 +150,12 @@ class Test(object):
     def test_estado_atuador_pneumatico_ligado(self):
         atuador_pneu = AtuadorPneumatico()
         atuador_pneu.ligar()
-        assert atuador_pneu.get_estado() == 'Pistão pneumatico ligado'
+        assert atuador_pneu.get_estado() == 'Pistão pneumático ligado'
 
     def test_estado_atuador_pneumatico_desligado(self):
         atuador_pneu = AtuadorPneumatico()
         atuador_pneu.desligar()
-        assert atuador_pneu.get_estado() == 'Pistão pneumatico desligado'
+        assert atuador_pneu.get_estado() == 'Pistão pneumático desligado'
 
     def test_posicao_atuador_pneumatico_avancar(self):
         atuador_pneu = AtuadorPneumatico()
@@ -147,12 +167,6 @@ class Test(object):
         atuador_pneu.recuar()
         assert atuador_pneu.get_posicao() == 'Início do pistão pneumático'
 
-    
-    # def test_grandeza_atuador_pneumatico(self):
-    #     atuador_pneu = AtuadorPneumatico()
-    #     atuador_pneu.set_valorLido('50')
-    #     atuador_pneu.set_grandeza('Pa')
-    #     assert atuador_pneu.medir() == '50Pa'
 
 
 # ---------------------------- TESTS ATUADOR HIDRAULICO ----------------------------
@@ -167,13 +181,13 @@ class Test(object):
         atuador_hidra.desligar()
         assert atuador_hidra.get_estado() == 'Prensa hidráulica desligada'
 
-    def test_posicao_atuador_pneumatico_avancar(self):
-        atuador_pneu = AtuadorPneumatico()
-        atuador_pneu.avancar()
-        assert atuador_pneu.get_posicao() == 'Fim do pistão pneumático'
+    def test_posicao_atuador_hidraulico_avancar(self):
+        atuador_hidra = AtuadorHidraulico()
+        atuador_hidra.avancar()
+        assert atuador_hidra.get_posicao() == 'Fim da prensa hidráulica'
     
-    def test_posicao_atuador_pneumatico_recuar(self):
-        atuador_pneu = AtuadorPneumatico()
-        atuador_pneu.recuar()
-        assert atuador_pneu.get_posicao() == 'Início do pistão pneumático'
+    def test_posicao_atuador_hidraulico_recuar(self):
+        atuador_hidra = AtuadorHidraulico()
+        atuador_hidra.recuar()
+        assert atuador_hidra.get_posicao() == 'Início da prensa hidráulica'
 

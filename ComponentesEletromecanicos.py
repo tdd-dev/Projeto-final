@@ -1,4 +1,5 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+
 
 class ComponentesEletromecanicos(ABC):
     
@@ -39,7 +40,11 @@ class Sensores(ComponentesEletromecanicos):
             self.valorLido = args[0]
             self.valorMaximo = args[1]
         
-        
+    def set_grandeza(self, grandeza):
+        self.grandeza = grandeza
+    def get_grandeza(self):
+        return self.grandeza
+
     def set_valorLido(self, valorLido):
         self.valorLido = valorLido
     def get_valorLido(self):
@@ -65,12 +70,13 @@ class Sensores(ComponentesEletromecanicos):
         return self.estado
 
 class Atuadores(ComponentesEletromecanicos):
-    def __init__(self, posicao, atuador):
-        super().__init__('', 'atuar', 'Atuador deligado')
-        self.posicao = posicao
-        self.atuador = atuador
-    def __init__(self):
-        super().__init__('', 'atuar', 'Atuador deligado')
+
+    def __init__(self, *args):
+        super().__init__('','atuar','Atuador desligado')
+        if len(args) == 2:
+            self.posicao = args[0]
+            self.atuador = args[1]
+
     def get_posicao(self):
         return self.posicao
     def set_posicao(self, posicao):
@@ -97,4 +103,4 @@ class Atuadores(ComponentesEletromecanicos):
         self.set_posicao('Fim do Atuador')
 
     def recuar(self):
-        self.set_estado('Inicio do Atuador')
+        self.set_posicao('Início do Atuador')
