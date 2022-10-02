@@ -143,6 +143,7 @@ Implementação feita até o segundo nível de hierarquia
 
     - Resultado de 97% coberto
 ![100%](./coverage_100.jpeg)
+
 Implementação completa
 
 # Conclusoes
