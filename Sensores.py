@@ -1,8 +1,6 @@
 from ComponentesEletromecanicos import Sensores
 
 class SensorTemperatura(Sensores):
-
-
     def __init__(self):
         super().__init__()
 
@@ -24,8 +22,6 @@ class SensorTemperatura(Sensores):
             return 'GRANDEZA DEVE SER EM CELSIUS'
         else:
             return self.get_valorLido() + self.get_grandeza()
-        
-        
 
 class SensorPressao(Sensores):
 
